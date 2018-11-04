@@ -1,40 +1,50 @@
 import React, { Component } from 'react'
 import { number } from 'prop-types';
 import PeopleList from './PeopleList'
-
+import Card from "./Card"
 
 class People extends Component {
     constructor() {
         super()
         this.state = {
-            people: [
-                {
-                name: 'Kyle',
-                notes: 'Sharp',
-                id: Number,
-                }
-            ]
+            people: [],
+            name: '',
+            notes: '',
         }
         this.handleChange = (e) => {
-            console.log(e.target.value)
+            e.preventDefault()
             this.setState({ name: e.target.value })
+        }
+        this.updateChange = (e) => {
+            const people = this.state.people
+            people.push({
+                name: this.state.name,
+                notes: this.state.notes,
+            })
+            this.setState({people, name: '', notes: ''})
         }
     }
     render() {
-        console.log("State", this.state.people[0].name)
+        console.log("State", this.state.people)
+
         return(
             <div>
-                <PeopleList people={this.state.people}/>
-                <form onClick={this.handleChange}>
+
+                <form onSubmit={this.handleChange}>
                     Name: 
                     <input type="text" value={this.state.name} onChange={this.handleChange} />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" onClick={this.updateChange} />
                 </form>
-                {this.state.people.map(person => {
+
+                Here's {this.state.name}
+            
+                {/* {this.state.people.map(person => {
                     return(
-                        person.name
+                        <li>
+                            {person.name}
+                        </li>
                     )
-                })}
+                })} */}
             </div>
         )
     }
