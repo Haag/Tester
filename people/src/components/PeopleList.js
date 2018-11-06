@@ -1,5 +1,5 @@
 import React from 'react'
-import PeopleCard from "./Card"
+import PersonCard from "./PersonCard"
 
 const PeopleList = (props) => {
         return (
@@ -7,7 +7,7 @@ const PeopleList = (props) => {
                 {props.people.map(person => {
                     return(
                         <div>
-                            <PeopleCard 
+                            <PersonCard 
                             name={ person.name }
                             note={ person.notes }   />
                         </div>

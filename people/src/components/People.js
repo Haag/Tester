@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { number } from 'prop-types';
 import PeopleList from './PeopleList'
-import Card from "./Card"
+import PeopleForm from "./PeopleForm"
+
+import Card from '@material-ui/core/Card';
+
 
 class People extends Component {
     constructor() {
         super()
         this.state = {
-            people: [],
+            people: [
+                {
+                    name: "Kyle",
+                    notes: "Blah blah blah",
+                }],
             name: '',
             notes: '',
         }
@@ -29,22 +36,21 @@ class People extends Component {
 
         return(
             <div>
+                <Card>
+                    <PeopleForm handleChange={this.handleChange} updateChange={this.updateChange}
+                        name={this.state.name} />
+                </Card>
+                
+                <PeopleList people={this.state.people} />
 
-                <form onSubmit={this.handleChange}>
-                    Name: 
-                    <input type="text" value={this.state.name} onChange={this.handleChange} />
-                    <input type="submit" value="Submit" onClick={this.updateChange} />
-                </form>
-
-                Here's {this.state.name}
             
-                {/* {this.state.people.map(person => {
+                {this.state.people.map(person => {
                     return(
                         <li>
                             {person.name}
                         </li>
                     )
-                })} */}
+                })}
             </div>
         )
     }

@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import People from './People'
-import PeopleList from './PeopleList'
 
 import PropTypes from 'prop-types';
 import {Card, CardMedia, CardActionArea, CardActions, withStyles,
      CardContent, Button, Typography} from '@material-ui/core';
 
-const PeopleCard = (props) => {
+const PersonCard = (props) => {
     console.log('props', props);
 
     return (
@@ -14,7 +12,7 @@ const PeopleCard = (props) => {
             display: 'block',
             width: '30vw',
             transitionDuration: '0.3s',
-            height: '40vw'}}>
+            height: '10%'}}>
         <CardActionArea>
           {/* <CardMedia
             component="img"
@@ -47,8 +45,8 @@ const PeopleCard = (props) => {
     );
   }
   
-  PeopleCard.propTypes = {
+  PersonCard.propTypes = {
     classes: PropTypes.object.isRequired,
   };
 
-  export default PeopleCard
+  export default PersonCard
