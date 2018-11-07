@@ -14,13 +14,19 @@ class People extends Component {
                 {
                     name: "Kyle",
                     notes: "Blah blah blah",
+                    hwm: "Game night",
+                    wwm: "Dec 2018",
                 }],
             name: '',
             notes: '',
+            hwm: '',
+            wwm: '',
         }
-        this.handleChange = (e) => {
+        this.handleChange = (e, a) => {
             e.preventDefault()
-            this.setState({ name: e.target.value })
+            console.log("A", e.target.name)
+            const x = e.target.name
+            this.setState({ x: e.target.value })
         }
         this.updateChange = (e) => {
             const people = this.state.people
