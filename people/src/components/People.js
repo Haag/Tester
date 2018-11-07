@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { number } from 'prop-types';
 import PeopleList from './PeopleList'
 import PeopleForm from "./PeopleForm"
 
@@ -26,7 +25,7 @@ class People extends Component {
         }
         this.handleChange = (e) => {
             e.preventDefault()
-            console.log("NOTES?",e.target.name)
+            // console.log("NOTES?",e.target.name)
             this.setState({ [e.target.name]: e.target.value })
         }
         this.updateChange = () => {
@@ -47,7 +46,7 @@ class People extends Component {
 
         return(
             <div>
-                <Card>
+                <Card style={{width: "250px" }}>
                     <PeopleForm handleChange={this.handleChange} updateChange={this.updateChange}
                         name={this.state.name}  notes={this.state.notes} birthday={this.state.birthday}
                         hwm={this.state.hwm} wwm={this.state.wwm}/>
@@ -55,14 +54,6 @@ class People extends Component {
                 
                 <PeopleList people={this.state.people} />
 
-            
-                {this.state.people.map(person => {
-                    return(
-                        <li>
-                            {person.name}
-                        </li>
-                    )
-                })}
             </div>
         )
     }
