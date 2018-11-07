@@ -14,27 +14,32 @@ class People extends Component {
                 {
                     name: "Kyle",
                     notes: "Blah blah blah",
+                    birthday: "Jult 18, 91",
                     hwm: "Game night",
                     wwm: "Dec 2018",
                 }],
             name: '',
             notes: '',
+            birthday: '',
             hwm: '',
             wwm: '',
         }
-        this.handleChange = (e, a) => {
+        this.handleChange = (e) => {
             e.preventDefault()
-            console.log("A", e.target.name)
-            const x = e.target.name
-            this.setState({ x: e.target.value })
+            console.log("NOTES?",e.target.name)
+            this.setState({ [e.target.name]: e.target.value })
         }
-        this.updateChange = (e) => {
+        this.updateChange = () => {
             const people = this.state.people
             people.push({
                 name: this.state.name,
                 notes: this.state.notes,
+                birthday: this.state.birthday,
+                hwm: this.state.hwm,
+                wwm: this.state.wwm,
             })
-            this.setState({people, name: '', notes: ''})
+            this.setState({people, name: '', notes: '', birthday: '',
+                hwm: '', wwm: '',})
         }
     }
     render() {
@@ -44,7 +49,8 @@ class People extends Component {
             <div>
                 <Card>
                     <PeopleForm handleChange={this.handleChange} updateChange={this.updateChange}
-                        name={this.state.name} />
+                        name={this.state.name}  notes={this.state.notes} birthday={this.state.birthday}
+                        hwm={this.state.hwm} wwm={this.state.wwm}/>
                 </Card>
                 
                 <PeopleList people={this.state.people} />

@@ -9,7 +9,12 @@ const PeopleList = (props) => {
                         <div>
                             <PersonCard 
                             name={ person.name }
-                            note={ person.notes }   />
+                            note={ person.notes }
+                            birthday={ person.birthday }
+                            hwm={ person.hwm }
+                            wwm={ person.wwm }
+                            
+                            />
                         </div>
                     )
                 })}
