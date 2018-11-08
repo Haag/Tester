@@ -16,12 +16,14 @@ class People extends Component {
                     birthday: "July 18, 91",
                     hwm: "Game night",
                     wwm: "Dec 2018",
+                    // id: 0,
                 }],
             name: '',
             notes: '',
             birthday: '',
             hwm: '',
             wwm: '',
+            id: 0,
         }
         this.handleChange = (e) => {
             e.preventDefault()
@@ -29,6 +31,7 @@ class People extends Component {
             this.setState({ [e.target.name]: e.target.value })
         }
         this.updateChange = () => {
+            
             const people = this.state.people
             people.push({
                 name: this.state.name,
@@ -36,13 +39,15 @@ class People extends Component {
                 birthday: this.state.birthday,
                 hwm: this.state.hwm,
                 wwm: this.state.wwm,
+                id: this.state.id,
             })
             this.setState({people, name: '', notes: '', birthday: '',
-                hwm: '', wwm: '',})
+                hwm: '', wwm: '', id: this.state.id + 1})
         }
     }
+
     render() {
-        console.log("State", this.state.people)
+        console.log("State", this.state.id)
 
         return(
             <div>
