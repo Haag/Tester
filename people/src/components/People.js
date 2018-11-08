@@ -13,7 +13,7 @@ class People extends Component {
                 {
                     name: "Kyle",
                     notes: "Blah blah blah",
-                    birthday: "Jult 18, 91",
+                    birthday: "July 18, 91",
                     hwm: "Game night",
                     wwm: "Dec 2018",
                 }],
@@ -46,7 +46,7 @@ class People extends Component {
 
         return(
             <div>
-                <Card style={{width: "250px" }}>
+                <Card style={{width: "300px" }}>
                     <PeopleForm handleChange={this.handleChange} updateChange={this.updateChange}
                         name={this.state.name}  notes={this.state.notes} birthday={this.state.birthday}
                         hwm={this.state.hwm} wwm={this.state.wwm}/>

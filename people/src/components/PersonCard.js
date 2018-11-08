@@ -31,14 +31,23 @@ const PersonCard = (props) => {
               Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
               across all continents except Antarctica
             </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+               {props.hwm}
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+               {props.wwm}
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+               {props.birthday}
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
+            Update
           </Button>
           <Button size="small" color="primary">
-            Learn More
+            Delete
           </Button>
         </CardActions>
       </Card>
