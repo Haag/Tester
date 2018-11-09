@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PeopleList from './PeopleList'
 import PeopleForm from "./PeopleForm"
-
+import Header from './Header'
 import Card from '@material-ui/core/Card';
 
 
@@ -16,7 +16,6 @@ class People extends Component {
                     birthday: "July 18, 91",
                     hwm: "Game night",
                     wwm: "Dec 2018",
-                    // id: 0,
                 }],
             name: '',
             notes: '',
@@ -27,7 +26,6 @@ class People extends Component {
         }
         this.handleChange = (e) => {
             e.preventDefault()
-            // console.log("NOTES?",e.target.name)
             this.setState({ [e.target.name]: e.target.value })
         }
         this.updateChange = () => {
@@ -47,10 +45,11 @@ class People extends Component {
     }
 
     render() {
-        console.log("State", this.state.id)
+        // console.log("State", this.state.id)
 
         return(
             <div>
+                <Header />
                 <Card style={{width: "300px" }}>
                     <PeopleForm handleChange={this.handleChange} updateChange={this.updateChange}
                         name={this.state.name}  notes={this.state.notes} birthday={this.state.birthday}

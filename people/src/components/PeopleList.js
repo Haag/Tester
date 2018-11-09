@@ -14,7 +14,7 @@ const PeopleList = (props) => {
                             birthday={ person.birthday }
                             hwm={ person.hwm }
                             wwm={ person.wwm }
-                            id={index} 
+                            id={ person.index } 
                             />
                         </div>
                     )
