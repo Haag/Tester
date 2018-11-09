@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import PeopleList from './PeopleList'
 import PeopleForm from "./PeopleForm"
 import Header from './Header'
-import Card from '@material-ui/core/Card';
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 
+    
 class People extends Component {
     constructor() {
         super()
@@ -50,7 +52,7 @@ class People extends Component {
         return(
             <div>
                 <Header />
-                <Card style={{width: "300px" }}>
+                <Card >
                     <PeopleForm handleChange={this.handleChange} updateChange={this.updateChange}
                         name={this.state.name}  notes={this.state.notes} birthday={this.state.birthday}
                         hwm={this.state.hwm} wwm={this.state.wwm}/>
