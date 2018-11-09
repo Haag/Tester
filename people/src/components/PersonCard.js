@@ -1,61 +1,32 @@
-import React, { Component } from 'react'
-
-import PropTypes from 'prop-types';
-import {Card, CardMedia, CardActionArea, CardActions, withStyles,
-     CardContent, Button, Typography} from '@material-ui/core';
+import React from 'react';
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 const PersonCard = (props) => {
     console.log('props', props);
 
     return (
-      <Card className="Main_Card" style={{    
-            display: 'block',
-            width: '30vw',
-            transitionDuration: '0.3s',
-            height: '10%'}}>
-        <CardActionArea>
-          {/* <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            className="Card_Media"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
-          /> */}
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-               {props.name}
-            </Typography>
-            <Typography component="p">
-                {props.note}
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
-            </Typography>
-            <Typography gutterBottom variant="h6" component="h2">
-               {props.hwm}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="h2">
-               {props.wwm}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="h2">
-               {props.birthday}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Update
-          </Button>
-          <Button size="small" color="primary">
-            Delete
-          </Button>
-        </CardActions>
+      <div>
+      <Card>
+        {/* <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" /> */}
+        <CardBody>
+          <CardTitle>{props.name}</CardTitle>
+          <CardSubtitle>Card subtitle</CardSubtitle>
+          <CardText>{props.note}Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          
+          {props.hwm}
+          
+          {props.wwm}
+      
+          {props.birthday}
+          <Button>Button</Button>
+        </CardBody>
       </Card>
-    );
-  }
-  
-  PersonCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+    </div>
+         
+    )
+}    
+         
+
 
   export default PersonCard
