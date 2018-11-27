@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import './People.css'
 
 class People extends React.Component {
     constructor() {
@@ -19,7 +19,6 @@ class People extends React.Component {
         console.log('people', people);
     }
 
-
     render(){
         return (
             <div className="container">
@@ -31,7 +30,7 @@ class People extends React.Component {
                             <Link to={`/person/${person.id}`} >
                                 <div className="card text-white bg-success mb-3">
                                     <div className="card-body">
-                                    <p>{person.name}</p>
+                                    <h3>{person.name}</h3>
                                     <p>{person.notes}</p>
                                     </div>
                                 </div>

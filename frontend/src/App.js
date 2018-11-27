@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom'
 import NavBar from './Components/NavBar'
 import People from './Components/People'
+import Person from './Components/Person';
 
 class App extends Component {
   render() {
     return (
       <div >
-        Hello
+        APP.JS
         <NavBar />
-        <People />
-        Hello2
+        <Route exact path='/' component={People}/>
+        <Route exact path='/person/:personId' component={Person} />
+        {/* <People />
+        <Person /> */}
       </div>
     );
   }
