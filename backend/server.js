@@ -4,6 +4,10 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 
+//Auth0 Libraries
+const jwt = require('express-jwt')
+const jwlsRsa = require('jwks-rsa')
+
 const server = express()
 
 server.use(helmet())
@@ -44,6 +48,18 @@ server.get('/:id', (req, res) => {
     if(data.length === 0) return res.status(404).send({msg: "That location doesn't seem to exist"})
     if(data.length < 1) return res.status(500).send({msg: "Something went terribly wrong on the server's end"})
     res.send(data[0])
+})
+
+const checkJwt = jwt({
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwkRequestPerMinute: 5,
+        jwksUri: 'https://haag.auth0.com/.well-known/jwks.json'
+    }),
+    audience: 'jI0TjrDd48ZhDbuKh0INRNUPFqV0A579',
+    issuer: 'https://haag.auth0.com/',
+    algorithms: ['RS256']
 })
 
 
