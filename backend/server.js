@@ -63,12 +63,13 @@ const checkJwt = jwt({
 })
 
 
-server.post('/', (req, res) => {
+server.post('/', checkJwt, (req, res) => {
     const {name, notes} = req.body
     const newPerson = {
         id: DB.length + 1,
         name,
         notes,
+        author: req.user.name,
     }
     DB.push(newPerson)
     res.status(201)
