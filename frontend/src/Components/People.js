@@ -31,7 +31,7 @@ class People extends React.Component {
                                 <div className="card text-white bg-success mb-3">
                                     <div className="card-body">
                                     <h3>{person.name}</h3>
-                                    <p>{person.notes}</p>
+                                    {/* <p>{person.notes}</p> */}
                                     </div>
                                 </div>
                             </Link>

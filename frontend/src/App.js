@@ -12,8 +12,6 @@ class App extends Component {
         <NavBar />
         <Route exact path='/' component={People}/>
         <Route exact path='/person/:personId' component={Person} />
-        {/* <People />
-        <Person /> */}
       </div>
     );
   }
