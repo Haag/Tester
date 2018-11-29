@@ -6,7 +6,7 @@ const helmet = require('helmet')
 
 //Auth0 Libraries
 const jwt = require('express-jwt')
-const jwlsRsa = require('jwks-rsa')
+const jwksRsa = require('jwks-rsa')
 
 const server = express()
 
