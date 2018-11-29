@@ -42,14 +42,6 @@ server.get('/', (req, res) => {
         .send(data)
 })
 
-server.get('/:id', (req, res) => {
-    const data = DB.filter(data => (data.id === parseInt(req.params.id)))
-    if(data.length > 1) return res.status(500).send({msg: "Something went terribly wrong on the server's end"})
-    if(data.length === 0) return res.status(404).send({msg: "That location doesn't seem to exist"})
-    if(data.length < 1) return res.status(500).send({msg: "Something went terribly wrong on the server's end"})
-    res.send(data[0])
-})
-
 const checkJwt = jwt({
     secret: jwksRsa.expressJwtSecret({
         cache: true,
@@ -61,6 +53,15 @@ const checkJwt = jwt({
     issuer: 'https://haag.auth0.com/',
     algorithms: ['RS256']
 })
+
+server.get('/:id', (req, res) => {
+    const data = DB.filter(data => (data.id === parseInt(req.params.id)))
+    if(data.length > 1) return res.status(500).send({msg: "Something went terribly wrong on the server's end"})
+    if(data.length === 0) return res.status(404).send({msg: "That location doesn't seem to exist"})
+    if(data.length < 1) return res.status(500).send({msg: "Something went terribly wrong on the server's end"})
+    res.send(data[0])
+})
+
 
 
 server.post('/', checkJwt, (req, res) => {

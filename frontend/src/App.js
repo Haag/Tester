@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
 import NavBar from './Components/NavBar'
 import People from './Components/People'
-import Person from './Components/Person';
+import Person from './Components/Person'
+import Callback from './Callback'
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <NavBar />
         <Route exact path='/' component={People}/>
         <Route exact path='/person/:personId' component={Person} />
+        <Route exact path='/callback' component={Callback} />
       </div>
     );
   }
