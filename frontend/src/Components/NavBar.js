@@ -15,17 +15,18 @@ function NavBar(props) {
             To ROOT
          </Link>
          
-         {!auth0Client.isAuthenticated() &&
-            <button className="btn btn-dark" onClick={auth0Client.signIn}>Sign In</button> } 
-         {auth0Client.isAuthenticated() &&
-            <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button> }
-        
          <Link to="people" className="navbar-link">
             People
          </Link>
          <Link to="settings" className="navbar-link">
             Settings
          </Link>
+         
+         {!auth0Client.isAuthenticated() &&
+            <button className="btn btn-dark" onClick={auth0Client.signIn}>Sign In</button> } 
+         {auth0Client.isAuthenticated() &&
+            <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button> }
+        
       </nav>
   )
 }
