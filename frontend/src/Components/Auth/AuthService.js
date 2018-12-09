@@ -1,8 +1,8 @@
-import auth0Client from '../../Auth0'
+import Auth from '../../Auth0'
 
-console.log("IDTOKEN", auth0Client.idToken)
+console.log("IDTOKEN", Auth.idToken)
 
-// if(auth0Client.idToken === null){
+// if(Auth.idToken === null){
 //     console.log("NO")
 // } else {
 //     console.log("YES")

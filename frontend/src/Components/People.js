@@ -22,7 +22,6 @@ class People extends React.Component {
     render(){
         return (
             <div className="container">
-                People.js
                 <div className="row">
                     {this.state.people === null && <p>Loading People</p>}
                     {this.state.people && this.state.people.map(person => (
@@ -38,7 +37,6 @@ class People extends React.Component {
                         </div>
                     ))}
                 </div>
-                People.js
             </div>
         )
     }

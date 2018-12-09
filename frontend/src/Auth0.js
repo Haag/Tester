@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js'
+import history from './History';
 
 class Auth {
     //The constructior sets and grabs info.. Placing it in `this.auth0`
@@ -14,6 +15,7 @@ class Auth {
             scope: 'openid profile email'
         })
         this.getProfile = this.getProfile.bind(this)
+        this.getIdToken = this.getIdToken.bind(this)
         this.handleAuthentication = this.handleAuthentication.bind(this)
         this.isAuthenticated = this.isAuthenticated.bind(this)
         this.signIn = this.signIn.bind(this)
@@ -29,9 +31,17 @@ class Auth {
     }
 
     isAuthenticated() {
-        return new Date().getTime() < this.expiresAt
+        const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        return new Date().getTime() < expiresAt
     }
-
+    getAccessToken() {
+        const accessToken = localStorage.getItem('access_token');
+        if (!accessToken) {
+          throw new Error('No Access Token found');
+        }
+        return accessToken;
+      }
+    
     signIn() {
         this.auth0.authorize()
     }
@@ -47,6 +57,9 @@ class Auth {
             if (!authResult || !authResult.idToken) {
               return reject(err);
             }
+            if (authResult && authResult.accessToken && authResult.idToken){
+                this.setSession(authResult)
+            }
             //setting all the things we want. Can add email, etc
             this.idToken = authResult.idToken;
             this.profile = authResult.idTokenPayload;
@@ -56,14 +69,25 @@ class Auth {
           });
         })
       }
-
-      signOut(){
-          this.idToken = null
-          this.profile = null
-          this.expiresAt = null
+      setSession(authResult) {
+        // Set the time that the access token will expire at
+        const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('expires_at', expiresAt);
+        // navigate to the dashboard route
+        history.replace('/dashboard');
       }
+      signOut(){
+         // Clear access token and ID token from local storage
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
+        // navigate to the home route
+        history.replace('/');
+        }
 }
 
-const auth0Client = new Auth()
+const auth = new Auth()
 
-export default auth0Client
+export default auth

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import auth0Client from '../Auth0'
+import Auth from '../Auth0'
 
 
 function NavBar(props) {
    const signOut = () => {
-      auth0Client.signOut()
+      Auth.signOut()
       props.history.replace('/')
   }
 
@@ -22,9 +22,9 @@ function NavBar(props) {
             Settings
          </Link>
          
-         {!auth0Client.isAuthenticated() &&
-            <button className="btn btn-dark" onClick={auth0Client.signIn}>Sign In</button> } 
-         {auth0Client.isAuthenticated() &&
+         {!Auth.isAuthenticated() &&
+            <button className="btn btn-dark" onClick={Auth.signIn}>Sign In</button> } 
+         {Auth.isAuthenticated() &&
             <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button> }
         
       </nav>

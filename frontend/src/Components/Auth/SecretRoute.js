@@ -1,17 +1,17 @@
 import React from 'react'
 import {Route, Redirect} from 'react-router-dom'
-import auth0Client from '../../Auth0'
+import Auth from '../../Auth0'
 import AuthService from './AuthService'
 
 
 const SecretRoute = ({ component: Component, ...rest }) => (
 
-   console.log('component', auth0Client),
+   console.log('component', Auth),
    
    <Route 
    {...rest} 
    render={(props) => (
-         // console.log('Token', auth0Client.idToken),
+         // console.log('Token', Auth.idToken),
   
          AuthService.isAuthenticated === true
         ? <Component {...props} />
