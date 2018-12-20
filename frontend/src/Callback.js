@@ -7,9 +7,12 @@ import auth from './Auth0';
 //While it's gathering the data, prints loading, then redirects to home
 class Callback extends Component {
     async componentDidMount() {
+        console.log("ABT to call handleauth from Callback.js")
         await auth.handleAuthentication()
         this.props.history.replace('/home')
     }
+
+
 
     render(){
         return (

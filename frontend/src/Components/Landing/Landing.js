@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 // import HeaderFeaturettes from './HeaderFeaturettes';
-// import WhySpacedReps from './WhySpacedReps';
-// import Features from './Features';
+import WhyPeople from './WhyPeople';
+import Features from './Features';
 // import Pricing from './Pricing';
 // import Team from './Team';
 
@@ -35,12 +35,13 @@ const Landing = ({ auth }) => {
         </ArrowContainer>
       </Header>
       <Body>
-        {/* <WhySpacedReps />
+        <WhyPeople />
         <Features />
-        <Pricing />
+        {/* <Pricing />
         <Team /> */}
         <BackToTopContainer>
           <a href="top">Back to top</a>
+          <div> HELLO. THIS IS THE BOTTOM</div>
         </BackToTopContainer>
       </Body>
     </WrapperContainer>
@@ -126,10 +127,16 @@ button {
 const CTABtn = styled.button`
 font-size: 18px;
 height: 40px;
+&:hover {color: white}
+&:hover {background: black}
+&:hover {border: black}
 margin-right: ${props => props.learn ? 0 : '20px'};
 color: ${props => props.learn ? null : 'black'};
 border-color: ${props => props.learn ? null : 'black'};
 background: ${props => props.learn ? null : 'none'};
+
+&:hover {color: ${props => props.learn ? null : 'white'};}
+&:hover {background: ${props => props.learn ? null : 'black'};}
 width: 200px;
 
 @media (max-width: 540px) {

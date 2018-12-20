@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
+import {Route, withRouter} from 'react-router-dom'
 import NavBar from './Components/NavBar'
 import People from './Components/People'
 import Person from './Components/Person'
@@ -10,31 +10,63 @@ import Header from './Components/Header'
 
 import auth from './Auth0'
 
+
+import SecuredRoute from './Components/SecuredRoute'
+
 // const auth = new Auth();
 
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      checkingSession: true
+    }
+  }
+
+  async componentDidMount() {
+    if(this.props.location.pathname === './callback') {
+      this.setState({checkingSession: false})
+      return
+    }
+    try {
+      await auth.silentAuth()
+      this.forceUpdate()
+    } catch (err) {
+      if(err.error === 'login_required') return
+      console.log(err.error)
+    }
+    this.setState({checkingSession:false})
+  }
+
+
   render() {
     return (
       <div id='AppWrapper'>
+      {/* <NavBar /> */}
         <Route exact path="/" render={props => <Header auth={auth} {...props} />} />
         <Route exact path="/" render={props => <Landing auth={auth} {...props} />} />
 
         <Route path="/callback" render={(props) => {
-            auth.handleAuthentication(props);
+          console.log("HandleAuth", {...props})
+            // auth.handleAuthentication(props);
             return <Callback {...props} />;
           }}
         />
 
-        <div>
+ 
+          <SecuredRoute path='/home' 
+            component={People}
+            checkingSession={this.state.checkingSession}
+          />
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
-          <Route path='/home' render={props => <People auth={auth} {...props} />} />
-          <Route exact path='/person/:personId' component={Person} />
-          <Route exact path='/callback' component={Callback} />
-        </div>
+          {/* <Route path='/home' render={props => <People auth={auth} {...props} />} /> */}
+          {/* <Route exact path='/person/:personId' component={Person} /> */}
+          {/* <Route exact path='/callback' component={Callback} /> */}
+ 
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App)

@@ -11,81 +11,114 @@ class Auth {
 
             //should match Allowed Callback URL on Auth0.com
             redirectUri: 'http://localhost:3000/callback',
-            responseType: 'id_token',
+            responseType: 'token id_token',
             scope: 'openid profile email'
         })
-        this.getProfile = this.getProfile.bind(this)
-        this.getIdToken = this.getIdToken.bind(this)
+        // this.getProfile = this.getProfile.bind(this)
         this.handleAuthentication = this.handleAuthentication.bind(this)
         this.isAuthenticated = this.isAuthenticated.bind(this)
         this.signIn = this.signIn.bind(this)
         this.signOut = this.signOut.bind(this)
+
+        // this.getIdToken = this.getIdToken.bind(this)
+        // this.getAccessToken = this.getAccessToken.bind(this)
     }
 
     getProfile() {
         return this.profile
     }
-
     getIdToken() {
         return this.idToken
     }
-
     isAuthenticated() {
-        const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-        return new Date().getTime() < expiresAt
-    }
-    getAccessToken() {
-        const accessToken = localStorage.getItem('access_token');
-        if (!accessToken) {
-          throw new Error('No Access Token found');
-        }
-        return accessToken;
+        return new Date().getTime() < this.expiresAt;
       }
-    
+
+    // isAuthenticated() {
+    //     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    //     return new Date().getTime() < expiresAt
+    // }
+
     signIn() {
         this.auth0.authorize()
     }
+    
+    signOut() {
+        this.auth0.logout({
+          returnTo: 'http://localhost:3000',
+          clientID: 'jI0TjrDd48ZhDbuKh0INRNUPFqV0A579'
+        })
+    }
+
+
+    // signOut(){
+    //    // Clear access token and ID token from local storage
+    //   localStorage.removeItem('access_token');
+    //   localStorage.removeItem('id_token');
+    //   localStorage.removeItem('expires_at');
+    //   // navigate to the home route
+    //   history.replace('/');
+    //   }
+
+    // getAccessToken() {
+    //     const accessToken = localStorage.getItem('access_token');
+    //     if (!accessToken) {
+    //       throw new Error('No Access Token found');
+    //     }
+    //     return accessToken;
+    //   }
+    
 
     //Called immediately after being redirected from auth0
     //Fetches user details and idToken
     handleAuthentication() {
         return new Promise((resolve, reject) => {
-            //taking the info from this.auth0 above and parsing it
-            //authResult is the token_payload
           this.auth0.parseHash((err, authResult) => {
             if (err) return reject(err);
             if (!authResult || !authResult.idToken) {
               return reject(err);
             }
-            if (authResult && authResult.accessToken && authResult.idToken){
-                this.setSession(authResult)
-            }
-            //setting all the things we want. Can add email, etc
-            this.idToken = authResult.idToken;
-            this.profile = authResult.idTokenPayload;
-            // set the time that the id token will expire at
-            this.expiresAt = authResult.idTokenPayload.exp * 1000;
+            this.setSession(authResult)
             resolve();
           });
         })
       }
+
+
       setSession(authResult) {
-        // Set the time that the access token will expire at
-        const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-        localStorage.setItem('access_token', authResult.accessToken);
-        localStorage.setItem('id_token', authResult.idToken);
-        localStorage.setItem('expires_at', expiresAt);
-        // navigate to the dashboard route
-        history.replace('/dashboard');
+          console.log("SetSession was called")
+          console.log("Auth Result Baby", authResult)
+        this.accessToken = authResult.accessToken;
+        // console.log('accessToken', this.accessToken);
+        this.idToken = authResult.idToken;
+        // console.log('this.idToken', this.idToken);
+        this.profile = authResult.idTokenPayload;
+        // console.log('this.profile', this.profile);
+        this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
       }
-      signOut(){
-         // Clear access token and ID token from local storage
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('id_token');
-        localStorage.removeItem('expires_at');
-        // navigate to the home route
-        history.replace('/');
-        }
+
+
+    //   setSession(authResult) {
+    //       console.log("SET SESSION WAS CALLED")
+    //     // Set the time that the access token will expire at
+    //     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    //     localStorage.setItem('access_token', authResult.accessToken);
+    //     localStorage.setItem('id_token', authResult.idToken);
+    //     localStorage.setItem('expires_at', expiresAt);
+    //     // navigate to the dashboard route
+    //     history.replace('/dashboard');
+    //   }
+
+      silentAuth() {
+        return new Promise (( resolve, reject) => {
+          this.auth0.checkSession({}, (err, authResult) => {
+            if(err) return reject(err)
+            this.setSession(authResult)
+            resolve()
+          })
+        })
+      }
+      
 }
 
 const auth = new Auth()

@@ -5,10 +5,8 @@ import PropTypes from 'prop-types';
 import Nav from './Nav';
 import NavBar from './NavBar'
 
-// const logo = require('../images/SPACEREPS.svg');
-
 const Header = ({ auth }, props) => {
-    console.log('auth', auth);
+    // console.log('auth', auth);
 
   function login() {
     auth.signIn();
@@ -18,6 +16,7 @@ const Header = ({ auth }, props) => {
     auth.signOut();
   }
 
+  console.log("HEADER-Is Authenticated", auth.isAuthenticated())
   const { isAuthenticated } = auth;
   return (
     // {
@@ -43,7 +42,7 @@ const Header = ({ auth }, props) => {
             {/* <Logo src={logo} /> */}
           </AppName>
           <UsersNav id="UsersNav">
-            {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />}
+            {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
             {/* <Nav /> */}
             <LinkStyled id="LinkStyled" type="button" onClick={logout}>
               Sign out
@@ -77,6 +76,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid white;
+  background: darkgrey;
 
   // @media (max-width: 900px) {
   //   if (window.location.pathname === '/') {
@@ -120,6 +120,9 @@ const LinkStyled = styled.button`
   margin-left: 5%;
   background: none;
   border: 1px solid black;
+  &:hover {color: white}
+  &:hover {background: black}
+  
 
   // @media (max-width: 400px) {
   //   margin: 0 0 15px 0;

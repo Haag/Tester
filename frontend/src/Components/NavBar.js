@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import Auth from '../Auth0'
+import auth from '../Auth0'
 
 
 function NavBar(props) {
    const signOut = () => {
-      Auth.signOut()
+      auth.signOut()
       props.history.replace('/')
   }
 
@@ -21,12 +21,19 @@ function NavBar(props) {
          <Link to="settings" className="navbar-link">
             Settings
          </Link>
-         
-         {!Auth.isAuthenticated() &&
-            <button className="btn btn-dark" onClick={Auth.signIn}>Sign In</button> } 
-         {Auth.isAuthenticated() &&
-            <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button> }
-        
+         {console.log("NavBar TOKEN", auth.idToken)}
+         {console.log("NavBar It authenticated", auth.isAuthenticated())}
+
+        {!auth.isAuthenticated() &&
+            <button className="btn btn-dark" onClick={auth.signIn}>Sign In</button>          
+        }
+        {
+            auth.isAuthenticated() &&
+            <div>
+                <label className="mr-2 text-white">{auth.getProfile().name}</label>
+                <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
+            </div>
+        }
       </nav>
   )
 }

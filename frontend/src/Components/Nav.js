@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import auth from './../Auth0'
 
-const Nav = ({ isLoggedIn }) => {
+const Nav = () => {
   return (
     <NavContainer id="NavContainer">
       <li><a href="#why">Why People</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#team">Team</a></li>
-      {isLoggedIn ? <li><a href="/home">Dashboard</a></li> : null}
+      {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null}
     </NavContainer>
   );
 };

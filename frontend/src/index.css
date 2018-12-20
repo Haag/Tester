@@ -59,6 +59,8 @@ html {
 body {
   font-family: Helvetica;
   background:darkgrey;
+  margin-top: 50px;
+
 }
 
 body #root {
