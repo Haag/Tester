@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const WhyPeople = () => {
     return (
-        <Why id="why">
+        <LandingWhy id="why">
             <h2>
                 This is why you should use People....
             </h2>
-        </Why>
+        </LandingWhy>
     )
 }
 
@@ -15,10 +15,10 @@ const WhyPeople = () => {
 export default WhyPeople
 
 
-const Why = styled.div`
-background-color: yellow;
+const LandingWhy = styled.div`
+background-color: white;
 padding-top: 55px;
-border: 1px solid pink;
+// border: 1px solid pink;
 height: 100vh;
 width: 100%;
 `;

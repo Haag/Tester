@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js'
-import history from './History';
+// import history from './History';
 
 class Auth {
     //The constructior sets and grabs info.. Placing it in `this.auth0`

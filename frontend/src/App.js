@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import {Route, withRouter} from 'react-router-dom'
-import NavBar from './Components/NavBar'
+// import NavBar from './Components/NavBar'
 import People from './Components/People'
-import Person from './Components/Person'
+// import Person from './Components/Person'
 import Callback from './Callback'
 
 import Landing from './Components/Landing/Landing'
 import Header from './Components/Header'
-
 import auth from './Auth0'
 
 
 import SecuredRoute from './Components/SecuredRoute'
 
-// const auth = new Auth();
 
 
 class App extends Component {

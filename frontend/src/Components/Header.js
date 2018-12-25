@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
-import NavBar from './NavBar'
+// import NavBar from './NavBar'
 
 const Header = ({ auth }, props) => {
     // console.log('auth', auth);
@@ -23,10 +23,15 @@ const Header = ({ auth }, props) => {
     !isAuthenticated()
       ? (
         <Container id="HeaderContainer">
-          <AppName id="AppName" to="/">
+          
+          <AppName >
             {/* <Logo src={logo} /> */}
-            <h1>People</h1>
+            {/* This href="/" will reload the page. Replace with "#" to scroll */}
+            <a href="/">
+              <h1>People</h1>
+            </a>
           </AppName>
+
           <VisitorsNav id="VisitorsNav">
             <Nav id="Nav" />
             <LinkStyled id="LinkStyled" type="button" onClick={login}>
@@ -97,7 +102,7 @@ const Container = styled.div`
   // }
 `;
 
-const AppName = styled(Link)`
+const AppName = styled.div`
   align-self: center;
 
   h1 {

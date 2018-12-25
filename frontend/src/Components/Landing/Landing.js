@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-// import HeaderFeaturettes from './HeaderFeaturettes';
 import WhyPeople from './WhyPeople';
 import Features from './Features';
 // import Pricing from './Pricing';
@@ -21,8 +20,8 @@ const Landing = ({ auth }) => {
         <JumboTron>
           <div>
             <h1>Focus on your what matters to you.</h1>
-            <h1>Let us take care of the when.</h1>
-            <p>We believe in providing a seamless and intuitive study session from beginning to end. Whether you're adding new material or reviewing previous.</p>
+            <h1>Let us take care of remembering the details.</h1>
+            <p>We believe in providing a comfortable and intuitive storage bank of personal contacts. Whether you're adding new associates or reviewing previous, we have what you need.</p>
           </div>
           <CTAButtonsGroup>
             <CTABtn onClick={login}>Sign up</CTABtn>
@@ -31,7 +30,11 @@ const Landing = ({ auth }) => {
         </JumboTron>
         {/* <HeaderFeaturettes /> */}
         <ArrowContainer>
-          <Arrow />
+          <div>
+            <a href="#why">
+              <Arrow />
+            </a>
+          </div>
         </ArrowContainer>
       </Header>
       <Body>
@@ -40,7 +43,7 @@ const Landing = ({ auth }) => {
         {/* <Pricing />
         <Team /> */}
         <BackToTopContainer>
-          <a href="top">Back to top</a>
+          <a href="/">Back to top</a>
           <div> HELLO. THIS IS THE BOTTOM</div>
         </BackToTopContainer>
       </Body>
@@ -51,6 +54,7 @@ const Landing = ({ auth }) => {
 export default Landing
 
 // styles
+
 
 const WrapperContainer = styled.div`
 
@@ -171,8 +175,8 @@ const animate = keyframes`
 
 const Arrow = styled.span`
 display: block;
-width: 20px;
-height: 20px;
+width: 30px;
+height: 30px;
 border-color: black; // working in dev tools - not here
 border-bottom: 1px solid;
 border-right: 1px solid;
