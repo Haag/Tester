@@ -23,7 +23,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    if(this.props.location.pathname === './callback') {
+    console.log("APP.JS Props", this.props)
+    if(this.props.location.pathname === '/callback') {
       this.setState({checkingSession: false})
       return
     }
@@ -54,8 +55,8 @@ class App extends Component {
 
  
           <SecuredRoute path='/home' 
-            component={People}
             checkingSession={this.state.checkingSession}
+            component={People}
           />
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
           {/* <Route path='/home' render={props => <People auth={auth} {...props} />} /> */}
