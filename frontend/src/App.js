@@ -9,6 +9,7 @@ import Landing from './Components/Landing/Landing'
 import Header from './Components/Header'
 import auth from './Auth0'
 
+import HomeLanding from "./Components/Home/HomeLanding"
 
 import SecuredRoute from './Components/SecuredRoute'
 
@@ -54,12 +55,12 @@ class App extends Component {
         />
 
  
-          <SecuredRoute path='/home' 
+          {/* <SecuredRoute path='/home' 
             checkingSession={this.state.checkingSession}
             component={People}
-          />
+          /> */}
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
-          {/* <Route path='/home' render={props => <People auth={auth} {...props} />} /> */}
+          <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} />
           {/* <Route exact path='/person/:personId' component={Person} /> */}
           {/* <Route exact path='/callback' component={Callback} /> */}
  

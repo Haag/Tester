@@ -8,9 +8,15 @@ const Nav = () => {
       <li><a href="#why">Why People</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      {/* <li><a href="#team">Team</a></li> */}
       {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null}
     </NavContainer>
+
+    // <NavContainer id="NavContainer">
+    //   <li><a href="#why">Why People</a></li>
+    //   <li><a href="#features">Features</a></li>
+    //   <li><a href="#pricing">Pricing</a></li>
+    //   {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null}
+    // </NavContainer>
   );
 };
 

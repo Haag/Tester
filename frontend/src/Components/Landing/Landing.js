@@ -1,13 +1,8 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import WhyPeople from './WhyPeople';
 import Features from './Features';
 // import Pricing from './Pricing';
-// import Team from './Team';
-
-// const headerImg = require('../../images/brandi-redd-122054-unsplash.jpg');
-// const textImg = require('../../images/basic_sample.png');
 
 const Landing = ({ auth }) => {
   function login() {
@@ -30,7 +25,6 @@ const Landing = ({ auth }) => {
             </a>
           </CTAButtonsGroup>
         </JumboTron>
-        {/* <HeaderFeaturettes /> */}
         <ArrowContainer>
           <div>
             <a href="#why">
@@ -42,10 +36,9 @@ const Landing = ({ auth }) => {
       <Body>
         <WhyPeople />
         <Features />
-        {/* <Pricing />
-        <Team /> */}
+        {/* <Pricing /> */}
         <BackToTopContainer>
-          <a href="/">Back to top</a>
+          <a href="/#">Back to top</a>
           <div> HELLO. THIS IS THE BOTTOM</div>
         </BackToTopContainer>
       </Body>
