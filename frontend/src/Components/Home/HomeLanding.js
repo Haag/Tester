@@ -4,21 +4,17 @@ import PropTypes from 'prop-types';
 import Nav from "../Nav";
 import { Redirect } from 'react-router-dom'
 // import NavBar from './NavBar'
+import auth from '../../Auth0'
 
-const HomeLanding = ({ auth }, props) => {
-console.log("PROPS PASSED", props)
+const HomeLanding = () => {
+
   function logout() {
     auth.signOut();
   }
 
-  console.log("HomeLanding-Is Authenticated", auth.isAuthenticated())
-  const { isAuthenticated } = auth;
   return (
-    // {
-    !isAuthenticated()
-      ? 
-       <Redirect to="/"/>
-      : (
+    !auth.isAuthenticated() ? <Redirect to="/"/> : 
+      (
         <Container id="Container" isLoggedIn>
           <AppName id="AppName" to="/">
             <h1>PEOPLE</h1>
@@ -33,7 +29,6 @@ console.log("PROPS PASSED", props)
           </UsersNav>
         </Container>
       )
-    // }
   );
 };
 
