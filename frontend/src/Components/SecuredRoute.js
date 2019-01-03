@@ -19,3 +19,5 @@ function SecuredRoute(props) {
 }
 
 export default SecuredRoute
+
+

@@ -25,7 +25,9 @@ const Landing = ({ auth }) => {
           </div>
           <CTAButtonsGroup>
             <CTABtn onClick={login}>Sign up</CTABtn>
-            <CTABtn learn href="#why">Learn more</CTABtn>
+            <a href="#why">
+              <CTABtn learn href="#why">Learn more</CTABtn>
+            </a>
           </CTAButtonsGroup>
         </JumboTron>
         {/* <HeaderFeaturettes /> */}

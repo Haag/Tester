@@ -9,7 +9,7 @@ class Callback extends Component {
     async componentDidMount() {
         console.log("ABT to call handleauth from Callback.js")
         await auth.handleAuthentication()
-        this.props.history.replace('/')
+        this.props.history.replace('/home')
     }
 
     render(){
