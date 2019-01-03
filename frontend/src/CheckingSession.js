@@ -1,6 +1,9 @@
 import React from 'react'
 import auth from './Auth0'
 
+// SecuredRoot USED to take in a Path, checkingSession, and component. If checkingSession is TRUE,
+// will redirect to landing. Else, will return the component.
+
 class CheckingSession extends React.Component {
     constructor(){
       super()

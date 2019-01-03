@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Switch, Route, withRouter} from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 // import NavBar from './Components/NavBar'
 // import People from './Components/People'
@@ -15,7 +15,6 @@ import HomeLanding from "./Components/Home/HomeLanding"
 // Takes in a Path, checkingSession, and component. If checkingSession is TRUE,
 // will redirect to landing. Else, will return the component.
 import SecuredRoute from './Components/SecuredRoute'
-import CheckingSession from './CheckingSession'
 
 class App extends Component {
   constructor(){
@@ -31,12 +30,12 @@ class App extends Component {
         <Switch>
 
           <Route exact path="/" render={props => 
-            <div> <Header auth={auth} {...props} /> <Landing auth={auth} {...props} /> </div> } />
+            <div> <HomeLanding auth={auth} {...props} /> <Landing auth={auth} {...props} /> </div> } />
           
           <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
           
-          <SecuredRoute path='/home' component={HomeLanding} checkingSession={CheckingSession} />
-
+          <Route path='/home' component={HomeLanding} auth={auth} />
+          {/* <Route components={Landing, Header} /> */}
         </Switch>
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
           {/* <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} /> */}

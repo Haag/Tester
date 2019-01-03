@@ -30,35 +30,35 @@ class Auth {
     getIdToken() {
         return this.idToken
     }
-    isAuthenticated() {
-        return new Date().getTime() < this.expiresAt;
-      }
-
     // isAuthenticated() {
-    //     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    //     return new Date().getTime() < expiresAt
-    // }
+    //     return new Date().getTime() < this.expiresAt;
+    //   }
+
+    isAuthenticated() {
+        const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        return new Date().getTime() < expiresAt
+    }
 
     signIn() {
         this.auth0.authorize()
     }
     
-    signOut() {
-        this.auth0.logout({
-          returnTo: 'http://localhost:3000',
-          clientID: 'jI0TjrDd48ZhDbuKh0INRNUPFqV0A579'
-        })
-    }
+    // signOut() {
+    //     this.auth0.logout({
+    //       returnTo: 'http://localhost:3000',
+    //       clientID: 'jI0TjrDd48ZhDbuKh0INRNUPFqV0A579'
+    //     })
+    // }
 
 
-    // signOut(){
-    //    // Clear access token and ID token from local storage
-    //   localStorage.removeItem('access_token');
-    //   localStorage.removeItem('id_token');
-    //   localStorage.removeItem('expires_at');
-    //   // navigate to the home route
-    //   history.replace('/');
-    //   }
+    signOut(){
+       // Clear access token and ID token from local storage
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('id_token');
+      localStorage.removeItem('expires_at');
+      // navigate to the home route
+      this.props.history.replace('/');
+      }
 
     // getAccessToken() {
     //     const accessToken = localStorage.getItem('access_token');
@@ -85,29 +85,30 @@ class Auth {
       }
 
 
+      // setSession(authResult) {
+      //     console.log("SetSession was called")
+      //     console.log("Auth Result Baby", authResult)
+      //   this.accessToken = authResult.accessToken;
+      //   // console.log('accessToken', this.accessToken);
+      //   this.idToken = authResult.idToken;
+      //   // console.log('this.idToken', this.idToken);
+      //   this.profile = authResult.idTokenPayload;
+      //   // console.log('this.profile', this.profile);
+      //   this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+      // }
+
+
       setSession(authResult) {
-          console.log("SetSession was called")
-          console.log("Auth Result Baby", authResult)
-        this.accessToken = authResult.accessToken;
-        // console.log('accessToken', this.accessToken);
-        this.idToken = authResult.idToken;
-        // console.log('this.idToken', this.idToken);
-        this.profile = authResult.idTokenPayload;
-        // console.log('this.profile', this.profile);
-        this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+          console.log("SETSESSION WAS CALLED")
+        // Set the time that the access token will expire at
+        const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime())
+
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('expires_at', expiresAt);
+        // navigate to the dashboard route
+        // history.replace('/dashboard');
       }
-
-
-    //   setSession(authResult) {
-    //       console.log("SET SESSION WAS CALLED")
-    //     // Set the time that the access token will expire at
-    //     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    //     localStorage.setItem('access_token', authResult.accessToken);
-    //     localStorage.setItem('id_token', authResult.idToken);
-    //     localStorage.setItem('expires_at', expiresAt);
-    //     // navigate to the dashboard route
-    //     history.replace('/dashboard');
-    //   }
 
       silentAuth() {
         return new Promise (( resolve, reject) => {

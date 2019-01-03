@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import auth from './../Auth0'
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
 
-  console.log("NAV Auth", auth.isAuthenticated())
+  console.log("NAV IS-Auth? ", auth.isAuthenticated())
 
   if (!auth.isAuthenticated()) {
     return (
@@ -19,9 +20,9 @@ const Nav = () => {
   if (auth.isAuthenticated()) {
       return (
       <NavContainer id="UserNavContainer">
-        <li><a href="/family">Family</a></li>
-        <li><a href="friends">Friends</a></li>
-        <li><a href="#associates">Associates</a></li>
+        <li><Link to="/family">Family</Link></li>
+        <li><Link to="friends">Friends</Link></li>
+        <li><Link to="#associates">Associates</Link></li>
         {/* {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null} */}
       </NavContainer>
       )

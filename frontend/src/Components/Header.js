@@ -61,11 +61,11 @@ const Header = ({ auth }, props) => {
 
 export default Header;
 
-Header.propTypes = {
-  auth: PropTypes.shape({
-    isAuthenticated: PropTypes.func.isRequired,
-  }).isRequired,
-};
+// Header.propTypes = {
+//   auth: PropTypes.shape({
+//     isAuthenticated: PropTypes.func.isRequired,
+//   }).isRequired,
+// };
 
 // styles
 const Container = styled.div`

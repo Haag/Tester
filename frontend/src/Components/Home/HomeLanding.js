@@ -5,30 +5,77 @@ import { Redirect } from 'react-router-dom'
 // import NavBar from './NavBar'
 import auth from '../../Auth0'
 
-const HomeLanding = () => {
+  const HomeLanding = () => {
 
-  function logout() {
-    auth.signOut();
+    function login() {
+      auth.signIn();
+    }
+  
+    function logout() {
+      auth.signOut();
+    }
+  
+    console.log("HEADER-Is Authenticated", auth.isAuthenticated())
+    const { isAuthenticated } = auth;
+    return (
+      // {
+      !isAuthenticated()
+        ? (
+          <Container id="HeaderContainer">
+            
+            <AppName >
+              {/* <Logo src={logo} /> */}
+              {/* This href="/" will reload the page. Replace with "#" to scroll */}
+              <a href="/">
+                <h1>People</h1>
+              </a>
+            </AppName>
+  
+            <VisitorsNav id="VisitorsNav">
+              <Nav id="Nav" />
+              <LinkStyled id="LinkStyled" type="button" onClick={login}>
+                Sign in
+              </LinkStyled>
+            </VisitorsNav>
+          </Container>
+        )
+        : (
+          <Container id="Container" isLoggedIn>
+              <AppName id="AppName" >
+                <h1>HomeLanding</h1>
+              </AppName>
+              <UsersNav id="UsersNav">
+                {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
+                <Nav />
+                <LinkStyled id="LinkStyled" type="button" onClick={logout}>
+                  Sign out
+                </LinkStyled>
+              </UsersNav>
+            </Container>
+          
+          )
+    )
   }
-
-  return (
-    !auth.isAuthenticated() ? <Redirect to="/"/> : 
-      (
-        <Container id="Container" isLoggedIn>
-          <AppName id="AppName" to="/">
-            <h1>HomeLanding</h1>
-          </AppName>
-          <UsersNav id="UsersNav">
-            {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
-            <Nav />
-            <LinkStyled id="LinkStyled" type="button" onClick={logout}>
-              Sign out
-            </LinkStyled>
-          </UsersNav>
-        </Container>
-      )
-  );
-};
+  // console.log("HomeLanding IS-Auth? ", auth.isAuthenticated())
+  
+//   if (auth.isAuthenticated()) {
+//     return (
+//       <Container id="Container" isLoggedIn>
+//           <AppName id="AppName" >
+//             <h1>HomeLanding</h1>
+//           </AppName>
+//           <UsersNav id="UsersNav">
+//             {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
+//             <Nav />
+//             <LinkStyled id="LinkStyled" type="button" onClick={logout}>
+//               Sign out
+//             </LinkStyled>
+//           </UsersNav>
+//         </Container>
+      
+//       );
+//     }  
+// };
 
 export default HomeLanding;
 
