@@ -1,5 +1,6 @@
 import auth0 from 'auth0-js'
-// import history from './History';
+import history from './History';
+import { Redirect } from 'react-router-dom'
 
 class Auth {
     //The constructior sets and grabs info.. Placing it in `this.auth0`
@@ -30,6 +31,8 @@ class Auth {
     getIdToken() {
         return this.idToken
     }
+
+    // OLD WAY
     // isAuthenticated() {
     //     return new Date().getTime() < this.expiresAt;
     //   }
@@ -42,22 +45,17 @@ class Auth {
     signIn() {
         this.auth0.authorize()
     }
-    
-    // signOut() {
-    //     this.auth0.logout({
-    //       returnTo: 'http://localhost:3000',
-    //       clientID: 'jI0TjrDd48ZhDbuKh0INRNUPFqV0A579'
-    //     })
-    // }
-
 
     signOut(){
-       // Clear access token and ID token from local storage
+      // Clear access token and ID token from local storage
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
-      // navigate to the home route
-      this.props.history.replace('/');
+    
+        this.auth0.logout({
+          returnTo: 'http://localhost:3000',
+          clientID: 'jI0TjrDd48ZhDbuKh0INRNUPFqV0A579'
+        })
       }
 
     // getAccessToken() {
@@ -84,7 +82,7 @@ class Auth {
         })
       }
 
-
+      // OLD WAY
       // setSession(authResult) {
       //     console.log("SetSession was called")
       //     console.log("Auth Result Baby", authResult)

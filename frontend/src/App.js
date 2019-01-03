@@ -4,6 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 // import NavBar from './Components/NavBar'
 // import People from './Components/People'
 // import Person from './Components/Person'
+import IncorrectPath from './Components/IncorrectPath'
 import Callback from './Callback'
 
 import Landing from './Components/Landing/Landing'
@@ -15,7 +16,6 @@ import HomeLanding from "./Components/Home/HomeLanding"
 // Takes in a Path, checkingSession, and component. If checkingSession is TRUE,
 // will redirect to landing. Else, will return the component.
 import SecuredRoute from './Components/SecuredRoute'
-
 class App extends Component {
   constructor(){
     super()
@@ -23,7 +23,7 @@ class App extends Component {
       filler: false
     }
   }
-
+  
   render() {
     return (
       <div id='AppWrapper'>
@@ -34,8 +34,8 @@ class App extends Component {
           
           <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
           
-          <Route path='/home' component={HomeLanding} auth={auth} />
-          {/* <Route components={Landing, Header} /> */}
+          <SecuredRoute path='/home' component={HomeLanding} auth={auth} />
+          <Route component={IncorrectPath} />
         </Switch>
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
           {/* <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} /> */}
