@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import auth from './Auth0'
 
-class CheckingSession extends Component {
+class CheckingSession extends React.Component {
     constructor(){
       super()
       this.state = {

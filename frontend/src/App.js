@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Route, withRouter} from 'react-router-dom'
+import {Switch, Route, withRouter} from 'react-router-dom'
+
 // import NavBar from './Components/NavBar'
 // import People from './Components/People'
 // import Person from './Components/Person'
@@ -27,14 +28,16 @@ class App extends Component {
   render() {
     return (
       <div id='AppWrapper'>
-        <Route exact path="/" render={props => <Header auth={auth} {...props} />} />
-        <Route exact path="/" render={props => <Landing auth={auth} {...props} />} />
-        <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
+        <Switch>
 
-        <SecuredRoute path='/home' 
-          checkingSession={CheckingSession}
-          component={HomeLanding}
-        />
+          <Route exact path="/" render={props => 
+            <div> <Header auth={auth} {...props} /> <Landing auth={auth} {...props} /> </div> } />
+          
+          <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
+          
+          <SecuredRoute path='/home' component={HomeLanding} checkingSession={CheckingSession} />
+
+        </Switch>
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
           {/* <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} /> */}
           {/* <Route exact path='/person/:personId' component={Person} /> */}

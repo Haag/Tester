@@ -3,22 +3,30 @@ import styled from 'styled-components';
 import auth from './../Auth0'
 
 const Nav = () => {
-  return (
-    <NavContainer id="NavContainer">
+
+  console.log("NAV Auth", auth.isAuthenticated())
+
+  if (!auth.isAuthenticated()) {
+    return (
+      <NavContainer id="VisitorNavContainer">
       <li><a href="#why">Why People</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null}
+      {/* {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null} */}
     </NavContainer>
+    )}
 
-    // <NavContainer id="NavContainer">
-    //   <li><a href="#why">Why People</a></li>
-    //   <li><a href="#features">Features</a></li>
-    //   <li><a href="#pricing">Pricing</a></li>
-    //   {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null}
-    // </NavContainer>
-  );
-};
+  if (auth.isAuthenticated()) {
+      return (
+      <NavContainer id="UserNavContainer">
+        <li><a href="/family">Family</a></li>
+        <li><a href="friends">Friends</a></li>
+        <li><a href="#associates">Associates</a></li>
+        {/* {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null} */}
+      </NavContainer>
+      )
+    } 
+}
 
 export default Nav;
 

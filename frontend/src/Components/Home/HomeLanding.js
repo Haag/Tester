@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import Nav from "../Nav";
 import { Redirect } from 'react-router-dom'
 // import NavBar from './NavBar'
@@ -17,12 +16,11 @@ const HomeLanding = () => {
       (
         <Container id="Container" isLoggedIn>
           <AppName id="AppName" to="/">
-            <h1>PEOPLE</h1>
-            {/* <Logo src={logo} /> */}
+            <h1>HomeLanding</h1>
           </AppName>
           <UsersNav id="UsersNav">
             {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
-            {/* <Nav /> */}
+            <Nav />
             <LinkStyled id="LinkStyled" type="button" onClick={logout}>
               Sign out
             </LinkStyled>
@@ -33,12 +31,6 @@ const HomeLanding = () => {
 };
 
 export default HomeLanding;
-
-HomeLanding.propTypes = {
-  auth: PropTypes.shape({
-    isAuthenticated: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 // styles
 const Container = styled.div`

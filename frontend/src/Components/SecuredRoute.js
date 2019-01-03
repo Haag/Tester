@@ -1,8 +1,5 @@
 import React from 'react'
-import { Route} from 'react-router-dom'
-import auth from '../Auth0'
-import { Redirect } from 'react-router-dom'
-
+import { Redirect, Route} from 'react-router-dom'
 
 function SecuredRoute(props) {    
     // console.log("ChkSession", props.checkingSession)
@@ -10,7 +7,7 @@ function SecuredRoute(props) {
     return (
         <Route path={path} render={() => {
             if (checkingSession === true) {
-                return <Redirect to="/"/> 
+                return <Redirect to="/dogs"/> 
                 // return auth.signIn()
             } else {
                 return <Component />
