@@ -1,3 +1,6 @@
+const Tutorialdb = require('./TutorialQueries')
+const db = require('./queries')
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
@@ -27,7 +30,14 @@ const DB = [
         notes: "Likes to eat, drink, and sleep",
     }
 ]
+// server.post('/users', db.createPerson)
+server.post('/users', db.createUser)
 
+server.get('/users', Tutorialdb.getUsers)
+server.get('/users/:id', Tutorialdb.getUserById)
+server.post('/users', Tutorialdb.createUser)
+server.put('/users/:id', Tutorialdb.updateUser)
+server.delete('/users/:id', Tutorialdb.deleteUser)
 
 server.get('/', (req, res) => {
     const data = DB.map(data => 

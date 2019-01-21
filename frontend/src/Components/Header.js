@@ -28,7 +28,7 @@ const Header = ({ auth }, props) => {
             {/* <Logo src={logo} /> */}
             {/* This href="/" will reload the page. Replace with "#" to scroll */}
             <a href="/">
-              <h1>People</h1>
+              <h1>PeopleBank</h1>
             </a>
           </AppName>
 

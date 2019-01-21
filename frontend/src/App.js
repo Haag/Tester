@@ -35,7 +35,7 @@ class App extends Component {
           <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
           
           <SecuredRoute path='/home' component={HomeLanding} auth={auth} />
-          <Route component={IncorrectPath} />
+          {/* <Route component={IncorrectPath} /> */}
         </Switch>
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
           {/* <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} /> */}

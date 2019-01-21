@@ -9,20 +9,24 @@ const Landing = ({ auth }) => {
     auth.signIn();
   }
 
+
+
   return (
     <WrapperContainer>
       <Header>
         <JumboTron>
           <div>
             <h1>Focus on your what matters to you.</h1>
-            <h1>Let us take care of remembering the details.</h1>
-            <p>We believe in providing a comfortable and intuitive storage bank of personal contacts. Whether you're adding new associates or reviewing previous, we have what you need.</p>
+            <h1>Blah blah blah blah blah blah</h1>
+            {/* <h1>Let us take care of remembering the details.</h1> */}
+            {/* <p>We believe in providing a comfortable and intuitive storage bank of personal contacts. Whether you're adding new associates or reviewing previous, we have what you need.</p> */}
           </div>
           <CTAButtonsGroup>
             <CTABtn onClick={login}>Sign up</CTABtn>
             <a href="#why">
               <CTABtn learn href="#why">Learn more</CTABtn>
             </a>
+            <CTABtn learn2 >Spotify</CTABtn>
           </CTAButtonsGroup>
         </JumboTron>
         <ArrowContainer>
@@ -134,8 +138,7 @@ color: ${props => props.learn ? null : 'black'};
 border-color: ${props => props.learn ? null : 'black'};
 background: ${props => props.learn ? null : 'none'};
 
-&:hover {color: ${props => props.learn ? null : 'white'};}
-&:hover {background: ${props => props.learn ? null : 'black'};}
+margin-right: ${props => props.learn2 ? 0 : '20px'};
 width: 200px;
 
 @media (max-width: 540px) {
