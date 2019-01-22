@@ -8,7 +8,7 @@ import auth from './Auth0';
 class Callback extends Component {
     async componentDidMount() {
         console.log("ABT to call handleauth from Callback.js")
-        // console.log("CALLBACK PROPS", this.props)
+        console.log("CALLBACK PROPS", this.props)
         await auth.handleAuthentication()
         this.props.history.replace('/home')
     }

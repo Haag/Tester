@@ -25,7 +25,6 @@ const Header = ({ auth }, props) => {
         <Container id="HeaderContainer">
           
           <AppName >
-            {/* <Logo src={logo} /> */}
             {/* This href="/" will reload the page. Replace with "#" to scroll */}
             <a href="/">
               <h1>PeopleBank</h1>
@@ -44,7 +43,6 @@ const Header = ({ auth }, props) => {
         <Container id="Container" isLoggedIn>
           <AppName id="AppName" to="/">
             <h1>PEOPLE</h1>
-            {/* <Logo src={logo} /> */}
           </AppName>
           <UsersNav id="UsersNav">
             {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}

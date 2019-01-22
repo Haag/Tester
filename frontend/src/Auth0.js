@@ -15,12 +15,12 @@ class Auth {
             responseType: 'token id_token',
             scope: 'openid profile email'
         })
-        // this.getProfile = this.getProfile.bind(this)
+        this.getProfile = this.getProfile.bind(this)
         this.handleAuthentication = this.handleAuthentication.bind(this)
         this.isAuthenticated = this.isAuthenticated.bind(this)
         this.signIn = this.signIn.bind(this)
         this.signOut = this.signOut.bind(this)
-
+        
         // this.getIdToken = this.getIdToken.bind(this)
         // this.getAccessToken = this.getAccessToken.bind(this)
     }
@@ -97,10 +97,9 @@ class Auth {
 
 
       setSession(authResult) {
-          console.log("SETSESSION WAS CALLED")
+          console.log("SETSESSION WAS CALLED", authResult)
         // Set the time that the access token will expire at
         const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime())
-
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);

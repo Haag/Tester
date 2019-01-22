@@ -1,4 +1,3 @@
-const Tutorialdb = require('./TutorialQueries')
 const db = require('./queries')
 
 const express = require('express')
@@ -30,14 +29,15 @@ const DB = [
         notes: "Likes to eat, drink, and sleep",
     }
 ]
-// server.post('/users', db.createPerson)
-server.post('/users', db.createUser)
+server.post('/person', db.createPerson)
+server.put('/person/:id', db.updatePerson)
+server.delete('/person/:id', db.deletePerson)
 
-server.get('/users', Tutorialdb.getUsers)
-server.get('/users/:id', Tutorialdb.getUserById)
-server.post('/users', Tutorialdb.createUser)
-server.put('/users/:id', Tutorialdb.updateUser)
-server.delete('/users/:id', Tutorialdb.deleteUser)
+server.post('/users', db.createUser)
+server.get('/users/:id', db.getUserById)
+
+// server.get('/users', Tutorialdb.getUsers)
+// server.post('/users', Tutorialdb.createUser)
 
 server.get('/', (req, res) => {
     const data = DB.map(data => 

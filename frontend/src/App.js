@@ -23,8 +23,8 @@ class App extends Component {
       filler: false
     }
   }
-  
   render() {
+    console.log("AUTH PROF", auth.getProfile())
     return (
       <div id='AppWrapper'>
         <Switch>
@@ -36,6 +36,7 @@ class App extends Component {
           
           <SecuredRoute path='/home' component={HomeLanding} auth={auth} />
           {/* <Route component={IncorrectPath} /> */}
+          
         </Switch>
           {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
           {/* <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} /> */}
