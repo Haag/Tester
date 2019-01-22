@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import Nav from "../Nav";
+import React from 'react'
+import styled from 'styled-components'
+import Nav from "../Nav"
 import { Redirect } from 'react-router-dom'
-// import NavBar from './NavBar'
 import auth from '../../Auth0'
+import SearchBar from '../SearchBar'
 
   const HomeLanding = () => {
 
@@ -15,7 +15,6 @@ import auth from '../../Auth0'
       auth.signOut();
     }
   
-    console.log("HEADER-Is Authenticated", auth.isAuthenticated())
     const { isAuthenticated } = auth;
     return (
       // {
@@ -40,46 +39,62 @@ import auth from '../../Auth0'
           </Container>
         )
         : (
-          <Container id="Container" isLoggedIn>
-              <AppName id="AppName" >
-                <h1>HomeLanding</h1>
-              </AppName>
+          <UserContainer id="UserContainer" isLoggedIn>
+              <NameButton id="AppName_SideButton">
+                  <SideBarButton id="SideBarButton">
+                      C
+                  </SideBarButton>
+                  
+                  <AppName id="AppName" >
+                      <h1>PeopleBank</h1>
+                  </AppName>
+              </NameButton>
+
+              <SearchBarDiv>
+                	<SearchBar />
+              </SearchBarDiv>
+
               <UsersNav id="UsersNav">
                 {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
                 <Nav />
+                
                 <LinkStyled id="LinkStyled" type="button" onClick={logout}>
                   Sign out
                 </LinkStyled>
               </UsersNav>
-            </Container>
+        
+            </UserContainer>
           
           )
     )
   }
-  // console.log("HomeLanding IS-Auth? ", auth.isAuthenticated())
-  
-//   if (auth.isAuthenticated()) {
-//     return (
-//       <Container id="Container" isLoggedIn>
-//           <AppName id="AppName" >
-//             <h1>HomeLanding</h1>
-//           </AppName>
-//           <UsersNav id="UsersNav">
-//             {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
-//             <Nav />
-//             <LinkStyled id="LinkStyled" type="button" onClick={logout}>
-//               Sign out
-//             </LinkStyled>
-//           </UsersNav>
-//         </Container>
-      
-//       );
-//     }  
-// };
+
 
 export default HomeLanding;
 
 // styles
+const UserContainer = styled.div`
+	background: #F7F8FA;
+	position: fixed;
+	display: flex;
+	width: 100%;
+	top: 0;
+	align-items: center;
+`
+const NameButton = styled.div`
+	display: flex;
+	align-items: center;
+	width: 25%;
+`
+const SearchBarDiv = styled.div`
+	display: flex;
+	width: 65%;
+`
+const UsersNav = styled.div`
+  display: flex;
+	width: 10%;
+`;
+
 const Container = styled.div`
   padding: 0 2%;
   position: fixed;
@@ -113,13 +128,41 @@ const Container = styled.div`
   //   height: 200px;
   // }
 `;
+const SideBarButton = styled.button`
+cursor: pointer;
+
+font-size: 14px;
+margin-left: 5%;
+
+height: 45px;
+width: 45px;
+border-radius: 100%;
+color: #525A65;
+
+
+background: none;
+border: 1px solid #525A65;
+&:hover {color: #F7F8FA}
+&:hover {background: #525A65}
+
+
+// @media (max-width: 400px) {
+//   margin: 0 0 15px 0;
+//   border: none;
+//   color: white;
+// }
+
+`
 
 const AppName = styled.div`
   align-self: center;
 
   h1 {
     font-family: 'Comfortaa', cursive;
-    font-size: 26px;
+    font-size: 30px;
+    padding: 25px 0px;
+    margin-left: 15%;
+    width: 100%;
     color: black;
     &:hover {color: white}
     &:hover {border-bottom: 1px solid black}
@@ -130,7 +173,7 @@ const AppName = styled.div`
 const LinkStyled = styled.button`
   font-size: 14px;
   height: 25px;
-  width: 90px;
+  width: 300px;
   cursor: pointer;
   border-radius: 3px;
   color: black;
@@ -172,6 +215,4 @@ justify-content: space-between;
 //   }
 `;
 
-const UsersNav = styled(VisitorsNav)`
-  justify-content: flex-end;
-`;
+

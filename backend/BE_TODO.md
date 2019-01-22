@@ -8,3 +8,7 @@ Study up on seeding and migrations
 Monday:
 
 create endpoints
+
+Deploy backend to Heroku
+
+ENV Vars

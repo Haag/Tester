@@ -20,9 +20,9 @@ const Nav = () => {
   if (auth.isAuthenticated()) {
       return (
       <NavContainer id="UserNavContainer">
-        <li><Link to="/family">Family</Link></li>
+        {/* <li><Link to="/family">Family</Link></li>
         <li><Link to="friends">Friends</Link></li>
-        <li><Link to="#associates">Associates</Link></li>
+        <li><Link to="#associates">Associates</Link></li> */}
         {/* {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null} */}
       </NavContainer>
       )
