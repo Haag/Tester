@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 
-// import NavBar from './Components/NavBar'
-// import People from './Components/People'
-// import Person from './Components/Person'
+
 import IncorrectPath from './Components/IncorrectPath'
 import Callback from './Callback'
 
 import Landing from './Components/Landing/Landing'
-import Header from './Components/Header'
 import auth from './Auth0'
 
 import HomeLanding from "./Components/Home/HomeLanding"
@@ -28,13 +25,13 @@ class App extends Component {
     return (
       <div id='AppWrapper'>
         <Switch>
-
           <Route exact path="/" render={props => 
             <div> <HomeLanding auth={auth} {...props} /> <Landing auth={auth} {...props} /> </div> } />
           
           <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
           
           <SecuredRoute path='/home' component={HomeLanding} auth={auth} />
+            {/* <SideBar /> */}
           {/* <Route component={IncorrectPath} /> */}
           
         </Switch>

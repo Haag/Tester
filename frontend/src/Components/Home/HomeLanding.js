@@ -4,6 +4,8 @@ import Nav from "../Nav"
 import { Redirect } from 'react-router-dom'
 import auth from '../../Auth0'
 import SearchBar from '../SearchBar'
+import SideBar from '../SideBar'
+
 
   const HomeLanding = () => {
 
@@ -42,7 +44,7 @@ import SearchBar from '../SearchBar'
           <UserContainer id="UserContainer" isLoggedIn>
               <NameButton id="AppName_SideButton">
                   <SideBarButton id="SideBarButton">
-                      C
+											☰
                   </SideBarButton>
                   
                   <AppName id="AppName" >
@@ -64,7 +66,7 @@ import SearchBar from '../SearchBar'
               </UsersNav>
         
             </UserContainer>
-          
+              
           )
     )
   }
