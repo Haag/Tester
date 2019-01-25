@@ -4,7 +4,6 @@ import Nav from "../Nav"
 import { Redirect } from 'react-router-dom'
 import auth from '../../Auth0'
 import SearchBar from '../SearchBar'
-import SideBar from '../SideBar'
 
 
   const HomeLanding = () => {
@@ -17,6 +16,9 @@ import SideBar from '../SideBar'
       auth.signOut();
     }
   
+    function openNav() {
+      // SearchBar.
+    }
     const { isAuthenticated } = auth;
     return (
       // {
@@ -43,13 +45,8 @@ import SideBar from '../SideBar'
         : (
           <UserContainer id="UserContainer" isLoggedIn>
               <NameButton id="AppName_SideButton">
-                  <SideBarButton id="SideBarButton">
-											☰
-                  </SideBarButton>
-                  
-                  <AppName id="AppName" >
-                      <h1>PeopleBank</h1>
-                  </AppName>
+                  <SideBarButton id="SideBarButton" onClick={openNav}> ☰ </SideBarButton>
+                  <AppName id="AppName"> <h1>PeopleBank</h1> </AppName>
               </NameButton>
 
               <SearchBarDiv>
@@ -58,13 +55,11 @@ import SideBar from '../SideBar'
 
               <UsersNav id="UsersNav">
                 {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
-                <Nav />
-                
-                <LinkStyled id="LinkStyled" type="button" onClick={logout}>
-                  Sign out
-                </LinkStyled>
+                  <LinkStyled id="LinkStyled" type="button" onClick={logout}>
+                      Sign out
+                  </LinkStyled>
               </UsersNav>
-        
+              
             </UserContainer>
               
           )
@@ -81,7 +76,9 @@ const UserContainer = styled.div`
 	display: flex;
 	width: 100%;
 	top: 0;
-	align-items: center;
+  align-items: center;
+  height: 80px;
+  z-index: 2;
 `
 const NameButton = styled.div`
 	display: flex;
@@ -162,12 +159,12 @@ const AppName = styled.div`
   h1 {
     font-family: 'Comfortaa', cursive;
     font-size: 30px;
-    padding: 25px 0px;
+
     margin-left: 15%;
     width: 100%;
     color: black;
-    &:hover {color: white}
-    &:hover {border-bottom: 1px solid black}
+    // &:hover {color: white}
+    // &:hover {border-bottom: 1px solid black}
   }
 `;
 
