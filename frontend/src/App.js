@@ -12,6 +12,7 @@ import Home from './Components/Home/Home'
 // Takes in a Path, checkingSession, and component. If checkingSession is TRUE,
 // will redirect to landing. Else, will return the component.
 import SecuredRoute from './Components/SecuredRoute'
+
 class App extends Component {
   constructor(){
     super()
@@ -20,7 +21,7 @@ class App extends Component {
     }
   }
   render() {
-    console.log("AUTH PROF", auth.getProfile())
+
     return (
       <div id='AppWrapper'>
         <Switch>
@@ -30,14 +31,12 @@ class App extends Component {
           <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
           
           <SecuredRoute path='/home' component={Home} auth={auth} />
+
             {/* <SideBar /> */}
           {/* <Route component={IncorrectPath} /> */}
           
         </Switch>
-          {/* <Route path='/home' render={props => <NavBar auth={auth} {...props} />} /> */}
-          {/* <Route path='/home' render={props => <HomeLanding auth={auth} {...props} />} /> */}
-          {/* <Route exact path='/person/:personId' component={Person} /> */}
-          {/* <Route exact path='/callback' component={Callback} /> */}
+
  
       </div>
     );

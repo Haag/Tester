@@ -19,11 +19,11 @@ import SideBar from '../SideBar'
 export default Home;
 
 // styles
-const UserContainer = styled.div`
-	background: #F7F8FA;
-	position: fixed;
-	display: flex;
-	width: 100%;
-	top: 0;
-	align-items: center;
-`
+// const UserContainer = styled.div`
+// 	background: #F7F8FA;
+// 	position: fixed;
+// 	display: flex;
+// 	width: 100%;
+// 	top: 0;
+// 	align-items: center;
+// `

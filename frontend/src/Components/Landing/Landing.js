@@ -26,7 +26,6 @@ const Landing = ({ auth }) => {
             <a href="#why">
               <CTABtn learn href="#why">Learn more</CTABtn>
             </a>
-            <CTABtn learn2 >Spotify</CTABtn>
           </CTAButtonsGroup>
         </JumboTron>
         <ArrowContainer>
@@ -56,7 +55,7 @@ export default Landing
 
 
 const WrapperContainer = styled.div`
-
+background: #525A65;
 @media (max-width: 540px) {
   h1 {
     font-size: 28px;
@@ -109,7 +108,7 @@ padding: 5% 10%;
 `;
 
 const Body = styled.div`
-  margin-top: 55px;
+  // margin-top: 55px;
   position: relative;
   flex:1;
   overflow:hidden;
@@ -138,7 +137,6 @@ color: ${props => props.learn ? null : 'black'};
 border-color: ${props => props.learn ? null : 'black'};
 background: ${props => props.learn ? null : 'none'};
 
-margin-right: ${props => props.learn2 ? 0 : '20px'};
 width: 200px;
 
 @media (max-width: 540px) {
@@ -173,11 +171,11 @@ const animate = keyframes`
 
 const Arrow = styled.span`
 display: block;
-width: 30px;
-height: 30px;
-border-color: black; // working in dev tools - not here
-border-bottom: 1px solid;
-border-right: 1px solid;
+color: #F7F8FA;
+width: 35px;
+height: 35px;
+border-bottom: 3px solid;
+border-right: 3px solid;
 transform: rotate(45deg);
 animation: ${animate} 2s infinite;
 `;

@@ -14,7 +14,7 @@ class SearchBar extends Component {
             <SearchContainer id="SearchContainer">
                 <SearchInput 
                 id = "SearchInput"
-                placeholder = "Search"
+                placeholder = "Search People"
                 value = {this.state.term}
                 onChange={ e => this.onInputChange(e.target.value)} />
             </SearchContainer>
@@ -30,9 +30,17 @@ export default SearchBar
 
 const SearchInput = styled.input`
 width: 100%;
-height: 45px;
-border-radius: 15px;
+height: 40px;
+border-radius: 300px;
 border: 1px solid #707070;
+::-webkit-input-placeholder {
+    padding-left : 5%;
+    font-size: 1rem;
+    color: red;
+}
+@media (max-width: 700px) {
+    // margin-left: 20%;
+    }
 `
 const SearchContainer = styled.div`
 width: 100%;

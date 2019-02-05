@@ -1,57 +1,62 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import HomeLanding from './Home/HomeLanding';
 
 
-function openNav() {
-  document.getElementById("mySidenav").style.width = "25%";
-  document.getElementById("mySidenav").style.marginTop = "80px";
-  document.getElementById("main").style.marginLeft = "25%";
-}
+class SideBar extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      isOpen: false
+    }
+    this.closeSide = this.closeSide.bind(this)
+    this.openSide = this.openSide.bind(this)
+  }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
+  openSide() {
+  this.setState({
+      isOpen: true
+    })
+    document.getElementById("mySidenav").style.width = "20%"
+    document.getElementById("mySidenav").style.marginTop = "60px"
+    document.getElementById("main").style.marginLeft = "20%"
+  }
 
+  closeSide() {
+   this.setState({
+      isOpen: false
+    })
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  
 
-const NewComponent = () => {
-
-return (
-
-  <SideBarContainer id="SideBarContainer">
-    <Sidenav id="mySidenav" className="sidenav">
-      <a
-        className="closebtn"
-        onClick={closeNav}
-        >
-        ×
-      </a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
-    </Sidenav>
-    <Main id="main">
-      <h2>Sidenav Push Example</h2>
-      <p>
-        Click on the element below to open the side navigation menu, and
-        push this content to the right.
-      </p>
-      <span
-        style={{ fontSize: 30, cursor: "pointer" }}
-        onClick={openNav}
-        >
-        ☰ open
-      </span>
-    </Main>
-
-</SideBarContainer>
+  render(){
+    return (
+      <SideBarContainer id="SideBarContainer">
+        
+        <HomeLanding openSide={this.openSide} closeSide={this.closeSide} isOpen={this.state.isOpen}/>
+        
+        <Sidenav id="mySidenav" className="sidenav">
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
+        </Sidenav>
+        <Main id="main">
+          <h2>Sidenav Push Example</h2>
+          <p>
+            Click on the element below to open the side navigation menu, and
+            push this content to the right.
+          </p>
+        </Main>
+    </SideBarContainer>
 )
 }
+}
 
 
-
-export default NewComponent
+export default SideBar
 
   const SideBarContainer = styled.div`
   font-family: "Lato";

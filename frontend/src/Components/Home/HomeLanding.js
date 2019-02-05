@@ -4,9 +4,9 @@ import Nav from "../Nav"
 import { Redirect } from 'react-router-dom'
 import auth from '../../Auth0'
 import SearchBar from '../SearchBar'
+import SideBar from '../SideBar'
 
-
-  const HomeLanding = () => {
+  const HomeLanding = (props) => {
 
     function login() {
       auth.signIn();
@@ -15,37 +15,50 @@ import SearchBar from '../SearchBar'
     function logout() {
       auth.signOut();
     }
-  
-    function openNav() {
-      // SearchBar.
+
+    function openSide() {
+      props.openSide()
+      console.log(props.open)
     }
+
+    function closeSide() {
+      props.closeSide()
+      console.log(props.open)
+    }
+
+
     const { isAuthenticated } = auth;
     return (
       // {
       !isAuthenticated()
         ? (
-          <Container id="HeaderContainer">
-            
+          <VisitorContainer id="HeaderContainer">
             <AppName >
               {/* <Logo src={logo} /> */}
               {/* This href="/" will reload the page. Replace with "#" to scroll */}
-              <a href="/">
-                <h1>People</h1>
+              <a href="/#">
+                <h1>PeopleBank</h1>
               </a>
             </AppName>
   
             <VisitorsNav id="VisitorsNav">
               <Nav id="Nav" />
-              <LinkStyled id="LinkStyled" type="button" onClick={login}>
-                Sign in
-              </LinkStyled>
             </VisitorsNav>
-          </Container>
+            
+            <LinkStyled id="LinkStyled" type="button" onClick={login}>
+              Sign in
+            </LinkStyled>
+
+          </VisitorContainer>
         )
         : (
           <UserContainer id="UserContainer" isLoggedIn>
               <NameButton id="AppName_SideButton">
-                  <SideBarButton id="SideBarButton" onClick={openNav}> ☰ </SideBarButton>
+                  {props.isOpen ? 
+                  ( <SideBarButton id="SideBarButton" onClick={closeSide}> X </SideBarButton> )
+                  : 
+                  ( <SideBarButton id="SideBarButton" onClick={openSide}> ☰ </SideBarButton> )
+                  }
                   <AppName id="AppName"> <h1>PeopleBank</h1> </AppName>
               </NameButton>
 
@@ -54,7 +67,6 @@ import SearchBar from '../SearchBar'
               </SearchBarDiv>
 
               <UsersNav id="UsersNav">
-                {/* {window.location.pathname === '/' && <Nav id="Nav" isLoggedIn />} */}
                   <LinkStyled id="LinkStyled" type="button" onClick={logout}>
                       Sign out
                   </LinkStyled>
@@ -73,42 +85,48 @@ export default HomeLanding;
 const UserContainer = styled.div`
 	background: #F7F8FA;
 	position: fixed;
-	display: flex;
+  display: flex;
+  flex-direction: row;
 	width: 100%;
 	top: 0;
   align-items: center;
-  height: 80px;
+  height: 60px;
   z-index: 2;
+  border-bottom: 1px solid #525A65;
+
+  justify-content: space-around;
+  
 `
 const NameButton = styled.div`
 	display: flex;
-	align-items: center;
-	width: 25%;
+  width: 20%;
+  min-width: 185px;
 `
 const SearchBarDiv = styled.div`
 	display: flex;
-	width: 65%;
+	width: 60%;
 `
 const UsersNav = styled.div`
   display: flex;
-	width: 10%;
+  width: 10%;
 `;
 
-const Container = styled.div`
-  padding: 0 2%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-width: 1500px;
-  align-items: center;
-  height: 55px;
+const VisitorContainer = styled.div`
+	background: #F7F8FA;
+	position: fixed;
   display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid white;
-  background: darkgrey;
+	width: 100%;
+	top: 0;
+  left: 0;
+  align-items: center;
+  height: 60px;
+  z-index: 2;
+  justify-content: space-around;
+  
+  padding: 0 2%;
+  // max-width: 1500px;
 
+ 
   // @media (max-width: 900px) {
   //   if (window.location.pathname === '/') {
   //     flex-direction: ${props => props.isLoggedIn ? 'column' : 'row'}
@@ -129,15 +147,13 @@ const Container = styled.div`
 `;
 const SideBarButton = styled.button`
 cursor: pointer;
-
 font-size: 14px;
-margin-left: 5%;
 
-height: 45px;
-width: 45px;
+min-height: 40px;
+min-width: 40px;
+
 border-radius: 100%;
 color: #525A65;
-
 
 background: none;
 border: 1px solid #525A65;
@@ -155,15 +171,15 @@ border: 1px solid #525A65;
 
 const AppName = styled.div`
   align-self: center;
-
   h1 {
-    font-family: 'Comfortaa', cursive;
-    font-size: 30px;
-
-    margin-left: 15%;
     width: 100%;
-    color: black;
-    // &:hover {color: white}
+    padding-left: 12%;
+
+    font-family: 'Comfortaa', cursive;
+    font-size: 25px;
+
+    color: #525A65;
+    &:hover {color: black}
     // &:hover {border-bottom: 1px solid black}
   }
 `;
@@ -174,9 +190,8 @@ const LinkStyled = styled.button`
   height: 25px;
   width: 300px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 100px;
   color: black;
-  margin-left: 5%;
   background: none;
   border: 1px solid black;
   &:hover {color: white}
