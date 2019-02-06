@@ -39,10 +39,16 @@ const NavContainer = styled.ul`
       font-size: 14px;
       text-decoration: none;
       padding-bottom: 10px;
+      color: #525A65;
 
+
+      &:hover {border-bottom: 1px solid black}
+      &:hover {color: black}
       &:hover {
-        border-bottom: 1px solid black;
+        text-shadow: -.25px -.25px 0 black, 
+                      .25px .25px black;
       }
+
     }
   }
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Nav from "../Nav"
-import { Redirect } from 'react-router-dom'
 import auth from '../../Auth0'
 import SearchBar from '../SearchBar'
 import SideBar from '../SideBar'
@@ -173,14 +172,18 @@ const AppName = styled.div`
   align-self: center;
   h1 {
     width: 100%;
-    padding-left: 12%;
+    margin-left: 12%;
 
     font-family: 'Comfortaa', cursive;
     font-size: 25px;
 
     color: #525A65;
     &:hover {color: black}
-    // &:hover {border-bottom: 1px solid black}
+
+    &:hover {
+      text-shadow: -.25px -.25px 0 black, 
+                    .25px .25px black;
+    }
   }
 `;
 
