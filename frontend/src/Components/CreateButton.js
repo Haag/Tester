@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
-
-const CreateButton = () => {
+const CreateButton = (props) => {
     return (
         <CreateButtonDiv>
-            <Button>
+            <Button onClick={props.addPerson}>
                 + Create Person
             </Button>
         </CreateButtonDiv>
@@ -32,10 +30,5 @@ const Button = styled.button`
     background: #F7F8FA;
     border: 1px solid white;
     &:hover {color: black}
-
-    // &:hover {
-    //     text-shadow: -.25px -.25px 0 black, 
-    //                   .25px .25px black;
-    //   }
 
 `

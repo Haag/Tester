@@ -1,6 +1,4 @@
 import auth0 from 'auth0-js'
-import history from './History';
-import { Redirect } from 'react-router-dom'
 
 class Auth {
     //The constructior sets and grabs info.. Placing it in `this.auth0`

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import HomeLanding from './Home/HomeLanding';
 import CreateButton from './CreateButton'
+import AddPersonModal from './AddPersonModal';
 
 class SideBar extends Component {
   constructor(props){
@@ -32,17 +33,18 @@ class SideBar extends Component {
   
 
   render(){
+    console.log("SIDE", this.props)
     return (
       <SideBarContainer id="SideBarContainer">
         
         <HomeLanding openSide={this.openSide} closeSide={this.closeSide} isOpen={this.state.isOpen}/>
         
         <Sidenav id="mySidenav" className="sidenav">
-         <CreateButton />
+         <AddPersonModal />
           <a href="#">About</a>
-          <a href="#">Services</a>
+          {/* <a href="#">Services</a>
           <a href="#">Clients</a>
-          <a href="#">Contact</a>
+          <a href="#">Contact</a> */}
         </Sidenav>
         <Main id="main">
           <h2>Sidenav Push Example</h2>
