@@ -4,6 +4,8 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import IncorrectPath from './Components/IncorrectPath'
 import Callback from './Callback'
 
+import Stripe from './Components/Stripe/StripeCheckout'
+
 import Landing from './Components/Landing/Landing'
 import auth from './Auth0'
 
@@ -28,6 +30,7 @@ class App extends Component {
           <Route exact path="/" render={props => 
             <div> <HomeLanding auth={auth} {...props} /> <Landing auth={auth} {...props} /> </div> } />
           
+          <Route path="/stripe" render={(props) => {return <Stripe {...props} />}} />
           <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
           
           <SecuredRoute path='/home' component={Home} auth={auth} />

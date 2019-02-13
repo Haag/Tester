@@ -1,4 +1,6 @@
 import auth0 from 'auth0-js'
+import axios from 'axios'
+
 
 class Auth {
     //The constructior sets and grabs info.. Placing it in `this.auth0`
@@ -96,14 +98,28 @@ class Auth {
 
       setSession(authResult) {
           console.log("SETSESSION WAS CALLED", authResult)
-        // Set the time that the access token will expire at
+        // Set the time that the access token will expire at  
         const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime())
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
+
+      
+        const email = authResult.idTokenPayload.email
+        this.checkEmail(email)
         // navigate to the dashboard route
         // history.replace('/dashboard');
       }
+
+      // checkEmail(props) {
+      //   componentDidMount() {
+      //     const people = axios.get("http://localhost:5050/users")
+      
+      //     console.log('people', people);
+      // }
+
+      // }
+
 
       silentAuth() {
         return new Promise (( resolve, reject) => {

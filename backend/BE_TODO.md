@@ -12,3 +12,5 @@ create endpoints
 Deploy backend to Heroku
 
 ENV Vars
+
+Find the unique token given by Google to Auth

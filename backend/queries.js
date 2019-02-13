@@ -9,6 +9,30 @@ const pool = new Pool({
 })
 
 //===========================================================================
+// GET ALL USERS.. CHECK FOR EMAIL
+const getUsers = (request, response) => {
+  pool.query('SELECT * FROM users', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+
+//===========================================================================
+// GET ALL LIVING PEOPLE by USER ID
+//need to specify ID
+const getPeople = (request, response) => {
+  pool.query('SELECT * FROM personl WHERE userid = 1 ORDER BY first_n ASC', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+//===========================================================================
 // CREATE LIVING PERSON
 
 const createPerson = (request, response) => {
@@ -76,53 +100,53 @@ const createUser = (request, response) => {
 }
 
 //===========================================================================
-const getUsers = (request, response) => {
-    pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-  }
+// const getUsers = (request, response) => {
+//     pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+//       if (error) {
+//         throw error
+//       }
+//       response.status(200).json(results.rows)
+//     })
+//   }
 
 
-  const getUserById = (request, response) => {
-    const userid = parseInt(request.params.id)
+//   const getUserById = (request, response) => {
+//     const userid = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM users WHERE userid = $1', [userid], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-  }
+//     pool.query('SELECT * FROM users WHERE userid = $1', [userid], (error, results) => {
+//       if (error) {
+//         throw error
+//       }
+//       response.status(200).json(results.rows)
+//     })
+//   }
 
-  const deleteUser = (request, response) => {
-    const id = parseInt(request.params.id)
+//   const deleteUser = (request, response) => {
+//     const id = parseInt(request.params.id)
   
-    pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(`User deleted with ID: ${id}`)
-    })
-  }
+//     pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+//       if (error) {
+//         throw error
+//       }
+//       response.status(200).send(`User deleted with ID: ${id}`)
+//     })
+//   }
 
-  const updateUser = (request, response) => {
-    const id = parseInt(request.params.id)
-    const { name, email } = request.body
+//   const updateUser = (request, response) => {
+//     const id = parseInt(request.params.id)
+//     const { name, email } = request.body
   
-    pool.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-      [name, email, id],
-      (error, results) => {
-        if (error) {
-          throw error
-        }
-        response.status(200).send(`User modified with ID: ${id}`)
-      }
-    )
-  }
+//     pool.query(
+//       'UPDATE users SET name = $1, email = $2 WHERE id = $3',
+//       [name, email, id],
+//       (error, results) => {
+//         if (error) {
+//           throw error
+//         }
+//         response.status(200).send(`User modified with ID: ${id}`)
+//       }
+//     )
+//   }
 
 
 
@@ -130,12 +154,13 @@ const getUsers = (request, response) => {
 
 
   module.exports = {
+    getPeople,
     getUsers,
-    getUserById,
+    // getUserById,
     createPerson,
     createUser,
-    updateUser,
+    // updateUser,
     updatePerson,
-    deleteUser,
+    // deleteUser,
     deletePerson,
   }

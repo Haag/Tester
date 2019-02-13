@@ -33,10 +33,14 @@ server.post('/person', db.createPerson)
 server.put('/person/:id', db.updatePerson)
 server.delete('/person/:id', db.deletePerson)
 
-server.post('/users', db.createUser)
-server.get('/users/:id', db.getUserById)
+server.get('/people', db.getPeople)
 
-// server.get('/users', Tutorialdb.getUsers)
+server.post('/users', db.createUser)
+// server.get('/users/:id', db.getUserById)
+
+//USE TO CHECK EMAIL
+server.get('/users', db.getUsers)
+
 // server.post('/users', Tutorialdb.createUser)
 
 server.get('/', (req, res) => {
