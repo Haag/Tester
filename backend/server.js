@@ -1,3 +1,4 @@
+require('dotenv').config()
 const db = require('./queries')
 
 const express = require('express')
@@ -17,6 +18,7 @@ server.use(cors())
 server.use(bodyParser.json())
 server.use(morgan('combined'))
 
+
 const DB = [
     {
         id: 1,
@@ -29,6 +31,33 @@ const DB = [
         notes: "Likes to eat, drink, and sleep",
     }
 ]
+
+const paymentApi = require("./payment")
+paymentApi(server);
+
+
+// const stripe = require("stripe")(process.env.STRIPE_SECRET);
+
+// server.post('/charge', (req, res, next) => {
+
+//     const token = req.body.stripeToken; // Using Express
+//     (async () => {
+//     return await stripe.charges.create({
+//     amount: parseInt(process.env.STRIPE_COST, 10),
+//     currency: process.env.STRIPE_CCY,
+//     // customer: customer.id,
+//     description: 'TEST charge',
+//     source: token,
+//     statement_descriptor: 'MoveBytes',
+//     metadata: {},
+//   });
+// })()})
+
+
+
+
+
+
 server.post('/person', db.createPerson)
 server.put('/person/:id', db.updatePerson)
 server.delete('/person/:id', db.deletePerson)
@@ -94,4 +123,4 @@ server.post('/', checkJwt, (req, res) => {
 
 
 
-server.listen(5050, () => {console.log('listening on port 5050')})
+server.listen(process.env.PORT || 9000, () => {console.log('listening on port 5050')})

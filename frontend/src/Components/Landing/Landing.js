@@ -10,7 +10,6 @@ const Landing = ({ auth }) => {
   }
 
 
-
   return (
     <WrapperContainer>
       <Header>

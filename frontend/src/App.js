@@ -4,7 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import IncorrectPath from './Components/IncorrectPath'
 import Callback from './Callback'
 
-import Stripe from './Components/Stripe/StripeCheckout'
+import Stripe from './Components/Stripe/StripeFE'
 
 import Landing from './Components/Landing/Landing'
 import auth from './Auth0'
